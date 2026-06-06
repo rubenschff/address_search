@@ -1,1 +1,68 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global reset and base styles */
+
+:root {
+	color-scheme: light;
+	font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	--app-bg: #f7f8fc;
+	--app-surface: #ffffff;
+	--app-text: #111827;
+	--app-muted: #6b7280;
+	--app-border: #e5e7eb;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	min-height: 100%;
+	margin: 0;
+}
+
+body {
+	min-height: 100vh;
+	background: var(--app-bg);
+	color: var(--app-text);
+}
+
+body,
+button,
+input,
+textarea,
+select {
+	font: inherit;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+img,
+svg,
+video,
+canvas {
+	display: block;
+	max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+	margin: 0;
+}
+
+app-root {
+	display: block;
+	min-height: 100vh;
+}
