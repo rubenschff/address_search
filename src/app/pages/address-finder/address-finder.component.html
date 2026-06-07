@@ -1,0 +1,112 @@
+<div class="container">
+    <div>
+        <h1 class="my-4">Busca de Endereço por CEP</h1>
+        <h5>Informe os CEP para buscar os dados.</h5>
+    </div>
+    <form class="form" [formGroup]="form" (ngSubmit)="searchCep()">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="cep" class="form-label">Código Postal</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="cep" 
+                    id="cep" 
+                    placeholder="Informe o CEP">
+                <span *ngIf="form.get('cep')?.invalid && form.get('cep')?.touched" class="text-danger d-block mt-1">
+                    <p *ngIf="form.get('cep')?.hasError('required')" class="mb-0">CEP é obrigatório.</p>
+                    <p *ngIf="form.get('cep')?.hasError('pattern')" class="mb-0">CEP deve conter 8 dígitos.</p>
+                </span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="uf" class="form-label">Estado</label>
+                <select 
+                    class="form-select" 
+                    formControlName="uf" 
+                    id="uf">
+                    <option value="">Selecione o Estado</option>
+                    <option *ngFor="let state of states" [value]="state.sigla">{{ state.nome }}</option>
+                </select>
+                <span *ngIf="form.get('uf')?.invalid && form.get('uf')?.touched" class="text-danger d-block mt-1">
+                    <p *ngIf="form.get('uf')?.hasError('required')" class="mb-0">Estado é obrigatório.</p>
+                </span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="localidade" class="form-label">Cidade</label>
+                <select 
+                    type="text" 
+                    class="form-select" 
+                    formControlName="localidade" 
+                    id="localidade" 
+                    placeholder="Cidade">
+                    <option value="">Selecione a Cidade</option>
+                    <option *ngFor="let city of cities" [value]="city.nome">{{ city.nome }}</option>
+                </select>
+                <span *ngIf="form.get('localidade')?.invalid && form.get('localidade')?.touched" class="text-danger d-block mt-1">
+                    <p *ngIf="form.get('localidade')?.hasError('required')" class="mb-0">Cidade é obrigatória.</p>
+                    <p *ngIf="form.get('localidade')?.hasError('minlength')" class="mb-0">Cidade deve conter ao menos 3 caracteres.</p>
+                </span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="logradouro" class="form-label">Logradouro</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="logradouro" 
+                    id="logradouro" 
+                    placeholder="Informe o Logradouro">
+                <span *ngIf="form.get('logradouro')?.invalid && form.get('logradouro')?.touched" class="text-danger d-block mt-1">
+                    <p *ngIf="form.get('logradouro')?.hasError('required')" class="mb-0">Logradouro é obrigatório.</p>
+                    <p *ngIf="form.get('logradouro')?.hasError('minlength')" class="mb-0">Logradouro deve conter ao menos 3 caracteres.</p>
+                </span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="bairro" class="form-label">Bairro</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="bairro" 
+                    id="bairro" 
+                    placeholder="Informe o Bairro">
+                <span *ngIf="form.get('bairro')?.invalid && form.get('bairro')?.touched" class="text-danger d-block mt-1">
+                    <p *ngIf="form.get('bairro')?.hasError('required')" class="mb-0">Bairro é obrigatório.</p>
+                    <p *ngIf="form.get('bairro')?.hasError('minlength')" class="mb-0">Bairro deve conter ao menos 3 caracteres.</p>
+                </span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="complemento" class="form-label">Complemento</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="complemento" 
+                    id="complemento" 
+                    placeholder="Informe o Complemento">
+            </div>
+            <div class="col-md-4 mb-3 gap-2 d-flex align-items-center">
+                <div class="col-md-8">
+                    <label for="numero" class="form-label">Número</label>
+                    <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="numero" 
+                    id="numero" 
+                    placeholder="Informe o Número">
+                    <span *ngIf="form.get('numero')?.invalid && form.get('numero')?.touched" class="text-danger d-block mt-1">
+                        <p *ngIf="form.get('numero')?.hasError('required')" class="mb-0">Número é obrigatório.</p>
+                    </span>
+                </div>
+                <div class="col-md-4 d-flex align-items-center mt-4">
+                    <input 
+                        type="checkbox" 
+                        class="form-check-input mt-2" 
+                        id="sn" 
+                        formControlName="sn">
+                    <label class="form-check-label mt-2 ms-1" for="sn">S/N</label>
+                </div>
+            </div>
+            <div class="col-md-12 mb-3">
+                <button type="submit" class="btn btn-primary">Buscar Endereço</button>
+            </div>
+        </div>
+    </form>
+</div>

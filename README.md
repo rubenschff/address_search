@@ -1,27 +1,35 @@
-# PostalCodeFinder
+# AddressSearch
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+## Instale os pacotes
+```
+    npm install
+```
 
-## Development server
+## Execute o projeto
+```
+    npm run start
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Funcionamento da busca de endereços
 
-## Code scaffolding
+A aplicação permite consultar endereços de duas formas:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Busca por CEP: ao informar um CEP válido, o sistema consulta automaticamente o endereço e preenche os campos de logradouro, bairro, complemento, localidade e UF.
+2. Busca por UF, cidade e logradouro: ao selecionar o estado, escolher a cidade e informar o logradouro, o usuário pode acionar a busca para localizar o endereço correspondente.
 
-## Build
+O formulário também valida os campos obrigatórios e exibe mensagens específicas para cada regra configurada, como formato do CEP, tamanho mínimo de texto e obrigatoriedade dos campos. Quando a opção S/N é marcada, o campo de número é desabilitado e deixa de ser obrigatório.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## APIs consumidas
 
-## Running unit tests
+O projeto consome as seguintes APIs externas:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- ViaCEP: `https://viacep.com.br/ws/{cep}/json/`
+	- Consulta endereço a partir do CEP.
+- ViaCEP por endereço: `https://viacep.com.br/ws/{uf}/{cidade}/{logradouro}/json/`
+	- Consulta CEP/endereço a partir de UF, cidade e logradouro.
+- IBGE Estados: `https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome`
+	- Lista os estados para o campo de UF.
+- IBGE Municípios por estado: `https://servicodados.ibge.gov.br/api/v1/localidades/estados/{uf}/municipios?orderBy=nome`
+	- Lista as cidades do estado selecionado.
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
